@@ -49,6 +49,13 @@ class D {
   format(mask = 'Y M D') {
     const arr = mask.split('')
     let date = ''
+    function pad(number) {
+      let str = '' + number
+      if (number < 10) {
+        str = '0' + str
+      }
+      return str
+    }
     arr.forEach((letter) => {
       switch (letter) {
         case 'Y':
@@ -58,7 +65,7 @@ class D {
           date += this.month
           break
         case 'D': 
-          date += this.day
+          date += pad(this._date.getDay())
           break
         case 'y':
           date += this.yr
@@ -70,13 +77,13 @@ class D {
           date += this.date
           break
         case 'H':
-          date += this.hour
+          date += pad(this._date.getHours())
           break
         case 'I':
-          date += this.mins
+          date += pad(this._date.getMinutes())
           break
         case 'S':
-          date += this.seconds
+          date += pad(this._date.getSeconds())
           break
         case 'h':
           date += this.hour
