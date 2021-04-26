@@ -94,22 +94,42 @@ class D {
         case 's':
           date += this.seconds
           break
+        case 'W':
+          date += this.day
+          break
+        case 'w':
+          date += this.dy
+          break
         default:
           date += letter
       }
     })
     return date
   }
+
+  when() {
+    const now = new D()
+    const the_year = this.year - now.year
+    const the_month = this._date.getMonth() - now._date.getMonth() + the_year * 12
+    const the_day = this.date - now.date
+
+    if (the_month > 11) {
+      return `${the_year} year${the_year > 1 ? 's' : ''} from now`
+    } else if (the_month < -11) {
+      return `${Math.abs(the_year)} year${the_year < -1 ? 's' : ''} ago`
+    } else if (the_month > 0) {
+      return `${the_month} month${the_month > 1 ? 's' : ''} from now`
+    } else if (the_month < 0) {
+      return `${Math.abs(the_month)} month${the_month < -1 ? 's' : ''} ago`
+    } else if (the_day > 0) {
+      return `${the_day} days ago`
+    } else if (the_day < 0) {
+      return `${the_day} days from now`
+    } else {
+      return 'today'
+    } 
+  }
 }
-
-
-
-const d = new D(2017, 0, 2, 3, 4, 5)
-console.log(d.format()) // 2017 January 02
-console.log(d.format('y/m/d')) // 17/Jan/2
-console.log(d.format('H:I:S')) // 03:04:05
-console.log(d.format('h:i:s')) // 3:4:5
-console.log(d.format('Y-M-D h:I:S')) // 2017-January-02 3:04:05 
 
 module.exports = D
 
@@ -125,3 +145,24 @@ module.exports = D
 // console.log( d.hour ) // 18   - Hour
 // console.log( d.mins )  // 6    - Minutes
 // console.log( d.seconds, '<- seconds')  // 5    - Seconds
+
+
+// const d = new D(2017, 0, 2, 3, 4, 5)
+// console.log(d.format()) // 2017 January 02
+// console.log(d.format('y/m/d')) // 17/Jan/2
+// console.log(d.format('H:I:S')) // 03:04:05
+// console.log(d.format('h:i:s')) // 3:4:5
+// console.log(d.format('Y-M-D h:I:S')) // 2017-January-02 3:04:05
+// console.log(d.format('W:w')) 
+
+// const d = new D(2019, 0, 2, 3, 4, 5)
+// console.log(d.when()) // 6 months ago
+// const d = new D(2019, 9, 2, 3, 4, 5)
+// console.log(d.when()) // 3 months from now
+// const d = new D(2024, 9, 2, 3, 4, 5)
+// console.log(d.when()) // 5 years from now
+// const d = new D(2019, 6, 30, 3, 4, 5)
+// console.log(d.when()) // 3 days from now
+const d = new D()
+console.log(d.when()) // today
+
