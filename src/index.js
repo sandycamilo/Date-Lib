@@ -5,46 +5,101 @@ class D {
 		this._date = new Date(...args)
 	}
 
+  /** 
+   * year
+   * @returns {Int} '2021' 
+   */
+
   get year() {
     return this._date.getFullYear()
   }
 
-  // getter method - only returns a value - internally they are methods
+  /** 
+   * yr
+   * @returns {Int} '21' 
+   */
+
   get yr() {
     return this._date.getFullYear() % 100
   }
+
+  /** 
+   * month
+   * @returns {String} 'April' 
+   */
 
   get month() {
     return months[this._date.getMonth()]
   }
 
+  /** 
+   * mon
+   * @returns {String} 'Apr' 
+   */
+
   get mon() {
     return mons[this._date.getMonth()]
   }
+
+  /** 
+   * day
+   * @returns {String} 'Suday' 
+   */
 
   get day() {
     return days[this._date.getDay()]
   }
 
+  /** 
+   * dy
+   * @returns {String} 'Sun' 
+   */
+
   get dy() {
     return dys[this._date.getDay()]
   }
+
+  /** 
+   * date
+   * @returns {Int} '25' 
+   */
 
   get date() {
     return this._date.getDate()
   }
 
+  /** 
+   * hour
+   * @returns {Int} '18' 
+   */
+
   get hour() {
     return this._date.getHours()
   }
+
+  /** 
+   * mins
+   * @returns {Int} '14' 
+   */
 
   get mins() {
     return this._date.getMinutes()
   }
 
+  /** 
+   * seconds
+   * @returns {Int} '45' 
+   */
+
   get seconds() {
     return this._date.getSeconds()
   }
+
+  /** 
+   * format
+   * @param {String} input string
+   * @returns {String} 'date' - displayed specific to the case 
+   */
 
   format(mask = 'Y M D') {
     const arr = mask.split('')
@@ -107,6 +162,11 @@ class D {
     return date
   }
 
+  /** 
+   * when
+   * @returns {String} - description of when the event will occur
+   */
+
   when() {
     const now = new D()
     const the_year = this.year - now.year
@@ -134,7 +194,7 @@ class D {
 module.exports = D
 
 // const d = new D() 
-// // Externally year looks like a property! - No parantheses
+// Externally year looks like a property! - No parantheses
 // console.log( d.year )  // 2021 - Full year
 // console.log( d.yr )    // 21   - Short year
 // console.log( d.month ) // July - Full month
@@ -163,6 +223,6 @@ module.exports = D
 // console.log(d.when()) // 5 years from now
 // const d = new D(2019, 6, 30, 3, 4, 5)
 // console.log(d.when()) // 3 days from now
-const d = new D()
-console.log(d.when()) // today
+// const d = new D()
+// console.log(d.when()) // today
 
