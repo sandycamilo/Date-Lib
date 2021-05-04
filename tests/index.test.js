@@ -41,9 +41,9 @@ test('D.hour', () => {
 })
 
 test('D.min', () => {
-  expect(d.min).toBe(today.getMinutes())
+  expect(d.mins).toBe(today.getMinutes())
 })
 
 test('D.sec', () => {
-  expect(d.second).toBe(today.getSeconds())
+  expect(d.seconds).toBe(today.getSeconds())
 })
